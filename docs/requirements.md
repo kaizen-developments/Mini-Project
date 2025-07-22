@@ -1,0 +1,8 @@
+- [REQ-1] Print “Hello, world!” using stdout
+- [REQ-2] Use two distinct functions
+- [FR-1] Function `print_hello()` prints "Hello, "
+- [FR-2] Function `print_world()` prints "world!"
+- [FR-3] `main()` calls the two functions in order
+- [NFR-1] Compatible with Ubuntu 22.04
+- [NFR-2] Exits with code 0
+- [NFR-3] Uses only stdout

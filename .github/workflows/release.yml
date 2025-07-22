@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"  # Triggers on semantic version tags, e.g., v1.0.0
+
+jobs:
+  release:
+    name: Create GitHub Release & Publish Artifacts
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧾 Checkout source
+        uses: actions/checkout@v3
+
+      - name: 🔖 Extract version
+        id: extract_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: 📦 Archive hello_world.py
+        run: |
+          mkdir release
+          cp hello_world.py release/
+          cp output.txt release/ || true
+
+      - name: 🚀 Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release ${{ env.VERSION }}
+          tag_name: ${{ env.VERSION }}
+          body: |
+            ## ✅ Hello DevOps - ISO Release
+
+            - Version: ${{ env.VERSION }}
+            - Program output: "Hello, world!"
+            - Includes tested and CI-validated Docker image
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📂 Upload release artifacts
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            release/hello_world.py
+            release/output.txt

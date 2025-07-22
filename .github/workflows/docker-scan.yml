@@ -1,0 +1,29 @@
+name: 🛡️ Docker Image Vulnerability Scan
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 5 * * 2' # Weekly every Tuesday @ 5am UTC
+
+jobs:
+  scan:
+    name: Scan Docker Image with Trivy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v3
+
+      - name: 🐳 Build Docker image
+        run: docker build -t hello-devops:ci .
+
+      - name: 🔍 Scan image using Trivy
+        uses: aquasecurity/trivy-action@v0.13.1
+        with:
+          image-ref: hello-devops:ci
+          format: table
+          severity: CRITICAL,HIGH
+          exit-code: 1

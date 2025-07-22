@@ -1,0 +1,45 @@
+# .github/workflows/ci.yml
+
+name: CI - Hello DevOps ISO Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    name: Build & Test in Docker
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧾 Checkout source code
+        uses: actions/checkout@v3
+
+      - name: 🐳 Build Docker image
+        run: docker build -t hello-devops:ci .
+
+      - name: 🚀 Run container and capture output
+        run: |
+          docker run --rm hello-devops:ci > output.txt
+          cat output.txt
+
+      - name: 🧪 Verify output matches expected
+        run: |
+          grep -q "Hello, world!" output.txt
+
+      - name: ✅ Confirm successful container exit code
+        run: |
+          docker run --rm hello-devops:ci
+          echo "Container exited successfully"
+
+      - name: 📦 Upload test output as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: program-output
+          path: output.txt
+
+      - name: 🏷️ Tag Docker image for versioning
+        run: |
+          docker tag hello-devops:ci hello-devops:1.0.0
