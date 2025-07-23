@@ -16,6 +16,8 @@ COPY hello_world.py .
 COPY test_hello.py .
 COPY test_integration.py .
 
+# Install updates
+RUN apt-get update && apt-get upgrade
 # Install test dependencies
 RUN pip install --no-cache-dir pytest
 
