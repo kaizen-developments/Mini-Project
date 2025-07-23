@@ -21,7 +21,7 @@ jobs:
         run: docker build -t hello-devops:ci .
 
       - name: 🔍 Scan image using Trivy
-        uses: aquasecurity/trivy-action@v0.32.0
+        uses: aquasecurity/trivy-action@v0.14.0
         with:
           image-ref: hello-devops:ci
           format: table
