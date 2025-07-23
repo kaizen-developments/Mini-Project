@@ -35,7 +35,7 @@ jobs:
           echo "Container exited successfully"
 
       - name: 📦 Upload test output as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: program-output
           path: output.txt
