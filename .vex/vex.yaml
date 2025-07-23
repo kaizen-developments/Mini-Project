@@ -1,0 +1,24 @@
+vexVersion: "1.0"              # VEX schema version
+documentName: "example-vex"    # your document name
+documentTimestamp: "2025-07-23T00:00:00Z"  # ISO 8601 format
+
+statements:
+  - statementId: "stmt-001"       # unique id
+    subject:
+      name: "libc-bin"     # name of the dependency/package to exclude
+      type: "library"             # type, usually library or container image
+      version: "2.36-9+deb12u10"            # version of the dependency
+    status: "not_affected"        # status: not_affected means ignore vulnerabilities here
+    justifications:
+      - reason: "dependency"  # reason for ignoring the vulnerability
+    responses: []
+
+  - statementId: "stmt-002"       # unique id
+    subject:
+      name: "libc6"     # name of the dependency/package to exclude
+      type: "library"             # type, usually library or container image
+      version: "2.36-9+deb12u10"            # version of the dependency
+    status: "not_affected"        # status: not_affected means ignore vulnerabilities here
+    justifications:
+      - reason: "dependency"  # reason for ignoring the vulnerability
+    responses: []
