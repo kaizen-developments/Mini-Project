@@ -26,7 +26,7 @@ jobs:
 
       - name: Run Trivy scan with VEX
         run: |
-          trivy image your-image:latest \
+          trivy image hello-devops:ci \
             --format sarif \
             --output trivy-results.sarif \
             --vex .vex/vex.yaml
