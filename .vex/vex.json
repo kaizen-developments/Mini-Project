@@ -1,0 +1,37 @@
+{
+  "vexVersion": "1.0",
+  "documentName": "example-vex",
+  "documentTimestamp": "2025-07-23T00:00:00Z",
+  "statements": [
+    {
+      "statementId": "stmt-001",
+      "subject": {
+        "name": "libc-bin",
+        "type": "library",
+        "version": "2.36-9+deb12u10"
+      },
+      "status": "not_affected",
+      "justifications": [
+        {
+          "reason": "dependency"
+        }
+      ],
+      "responses": []
+    },
+    {
+      "statementId": "stmt-002",
+      "subject": {
+        "name": "libc6",
+        "type": "library",
+        "version": "2.36-9+deb12u10"
+      },
+      "status": "not_affected",
+      "justifications": [
+        {
+          "reason": "dependency"
+        }
+      ],
+      "responses": []
+    }
+  ]
+}

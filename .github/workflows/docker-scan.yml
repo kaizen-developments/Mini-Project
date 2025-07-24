@@ -29,4 +29,4 @@ jobs:
           trivy image hello-devops:ci \
             --format sarif \
             --output trivy-results.sarif \
-            --vex .vex/vex.yaml
+            --vex .vex/vex.json
